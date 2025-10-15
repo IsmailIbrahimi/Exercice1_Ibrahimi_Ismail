@@ -22,10 +22,7 @@ def print_help() -> None:
 Aide rapide :
   add <titre>                Ajoute une tâche
   del <id>                   Supprime une tâche
-  toggle <id>                Marque/démarque une tâche comme terminée // enlevé
-  rename <id> <nouveau>      Renomme une tâche // enlevé
   list                       Affiche toutes les tâches
-  clear                      Supprime toutes les tâches terminées // enlevé
   help                       Affiche cette aide
   quit                       Quitte le programme
         """.strip()

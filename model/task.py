@@ -17,7 +17,7 @@ class Task:
 
     id: int
     title: str
-    completed: bool = False
+    # completed: bool = False
     created_at: datetime = field(default_factory=datetime.now)
 
     # def toggle(self) -> None:
@@ -32,5 +32,5 @@ class Task:
     #     self.title = new_title
 
     def __str__(self) -> str:  # Pour un affichage simple
-        status = "✅" if self.completed else "⏳"
-        return f"[{status}] #{self.id} - {self.title} (créée le {self.created_at:%Y-%m-%d %H:%M})"
+        # status = "✅" if self.completed else "⏳"
+        return f"#{self.id} - {self.title} (créée le {self.created_at:%Y-%m-%d %H:%M})"

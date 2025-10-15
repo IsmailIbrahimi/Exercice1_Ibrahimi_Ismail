@@ -8,7 +8,7 @@ def task_to_dict(t):
     return {
         "id": t.id,
         "title": t.title,
-        "completed": t.completed,
+        # "completed": t.completed,
         "created_at": t.created_at.isoformat(timespec="seconds"),
     }
 
