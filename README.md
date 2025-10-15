@@ -20,10 +20,10 @@ python main.py
 ## Commandes disponibles
 - `add <titre>` : ajoute une tâche
 - `del <id>` : supprime la tâche d'identifiant `<id>`
-- `toggle <id>` : termine / ré-ouvre la tâche
-- `rename <id> <nouveau titre>` : renomme la tâche
+- `toggle <id>` : termine / ré-ouvre la tâche (commande enlevée)
+- `rename <id> <nouveau titre>` : renomme la tâche (commande enlevée)
 - `list` : affiche toutes les tâches
-- `clear` : supprime les tâches terminées
+- `clear` : supprime les tâches terminées (commande enlevée)
 - `help` : affiche l'aide
 - `quit` : quitte
 
@@ -35,4 +35,8 @@ controllers/      # logique d'orchestration des tâches
   task_controller.py
 views/            # affichage CLI
   cli.py
+web/
+  templates/
+    index.html
+  app.py
 main.py           # point d'entrée (boucle d'interaction)
