@@ -9,6 +9,11 @@ Petit projet en ligne de commande pour gérer une liste de tâches.
 
 ## Prérequis & installation
 - Python 3.10+
+
+## Création d'un venv et installation des dépendances
+- python -m venv venv
+- cd venv
+- source Scripts/activate
 - pip install -r requirements.txt
 
 ```bash
