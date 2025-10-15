@@ -1,4 +1,3 @@
-README = r"""
 # ToDoList CLI (Python, MVC, POO – ultra débutant)
 
 Petit projet en ligne de commande pour gérer une liste de tâches.
