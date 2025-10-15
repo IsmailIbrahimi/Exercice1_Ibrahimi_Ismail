@@ -1,7 +1,6 @@
-from flask import Flask, request, jsonify, render_template   # + render_template
+from flask import Flask, request, jsonify, render_template
 from controllers.task_controller import TaskController
 
-# on précise où sont les templates/static (car app.py est dans /web)
 app = Flask(__name__, template_folder="templates", static_folder="static")
 controller = TaskController()
 
@@ -13,12 +12,11 @@ def task_to_dict(t):
         "created_at": t.created_at.isoformat(timespec="seconds"),
     }
 
-# --- NOUVEAU: page HTML ---
+
 @app.get("/")
 def home():
     return render_template("index.html")
 
-# --- API inchangée ---
 @app.get("/tasks")
 def list_tasks():
     return jsonify([task_to_dict(t) for t in controller.all()])
