@@ -33,21 +33,21 @@ def main() -> None:
                 ok = controller.delete(int(args[0]))
                 print("Supprimé." if ok else "Id introuvable.")
 
-            elif cmd == "toggle":
-                if not args:
-                    print("Il faut un id : toggle <id>")
-                    continue
-                ok = controller.toggle(int(args[0]))
-                print("État inversé." if ok else "Id introuvable.")
+            # elif cmd == "toggle":
+            #     if not args:
+            #         print("Il faut un id : toggle <id>")
+            #         continue
+            #     ok = controller.toggle(int(args[0]))
+            #     print("État inversé." if ok else "Id introuvable.")
 
-            elif cmd == "rename":
-                if len(args) < 2:
-                    print("Usage: rename <id> <nouveau titre>")
-                    continue
-                task_id = int(args[0])
-                new_title = " ".join(args[1:])
-                ok = controller.rename(task_id, new_title)
-                print("Renommé." if ok else "Id introuvable.")
+            # elif cmd == "rename":
+            #     if len(args) < 2:
+            #         print("Usage: rename <id> <nouveau titre>")
+            #         continue
+            #     task_id = int(args[0])
+            #     new_title = " ".join(args[1:])
+            #     ok = controller.rename(task_id, new_title)
+            #     print("Renommé." if ok else "Id introuvable.")
 
             elif cmd == "list":
                 print_tasks(controller.all())

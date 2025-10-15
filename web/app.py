@@ -30,23 +30,23 @@ def create_task():
     t = controller.add(title)
     return jsonify(task_to_dict(t)), 201
 
-@app.put("/tasks/<int:task_id>")
-def rename_task(task_id: int):
-    data = request.get_json(silent=True) or {}
-    new_title = (data.get("title") or "").strip()
-    if not new_title:
-        return jsonify({"error": "title requis"}), 400
-    ok = controller.rename(task_id, new_title)
-    if not ok:
-        return jsonify({"error": "id introuvable"}), 404
-    return jsonify(task_to_dict(controller.get_by_id(task_id)))
+# @app.put("/tasks/<int:task_id>")
+# def rename_task(task_id: int):
+#     data = request.get_json(silent=True) or {}
+#     new_title = (data.get("title") or "").strip()
+#     if not new_title:
+#         return jsonify({"error": "title requis"}), 400
+#     ok = controller.rename(task_id, new_title)
+#     if not ok:
+#         return jsonify({"error": "id introuvable"}), 404
+#     return jsonify(task_to_dict(controller.get_by_id(task_id)))
 
-@app.patch("/tasks/<int:task_id>/toggle")
-def toggle_task(task_id: int):
-    ok = controller.toggle(task_id)
-    if not ok:
-        return jsonify({"error": "id introuvable"}), 404
-    return jsonify(task_to_dict(controller.get_by_id(task_id)))
+# @app.patch("/tasks/<int:task_id>/toggle")
+# def toggle_task(task_id: int):
+#     ok = controller.toggle(task_id)
+#     if not ok:
+#         return jsonify({"error": "id introuvable"}), 404
+#     return jsonify(task_to_dict(controller.get_by_id(task_id)))
 
 @app.delete("/tasks/<int:task_id>")
 def delete_task(task_id: int):
@@ -55,10 +55,10 @@ def delete_task(task_id: int):
         return jsonify({"error": "id introuvable"}), 404
     return ("", 204)
 
-@app.delete("/tasks/completed")
-def delete_completed():
-    n = controller.clear_completed()
-    return jsonify({"deleted": n})
+# @app.delete("/tasks/completed")
+# def delete_completed():
+#     n = controller.clear_completed()
+#     return jsonify({"deleted": n})
 
 if __name__ == "__main__":
     app.run(debug=True)

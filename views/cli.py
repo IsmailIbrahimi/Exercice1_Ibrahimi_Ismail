@@ -4,7 +4,7 @@ from model.task import Task
 
 def print_header() -> None:
     print("\n====== ToDoList – CLI (débutant) ======")
-    print("Commandes : add <titre> | del <id> | toggle <id> | rename <id> <nouveau titre> | list | clear | help | quit")
+    print("Commandes : add <titre> | del <id> | list | help | quit")
 
 
 def print_tasks(tasks: Iterable[Task]) -> None:
@@ -22,10 +22,10 @@ def print_help() -> None:
 Aide rapide :
   add <titre>                Ajoute une tâche
   del <id>                   Supprime une tâche
-  toggle <id>                Marque/démarque une tâche comme terminée
-  rename <id> <nouveau>      Renomme une tâche
+  toggle <id>                Marque/démarque une tâche comme terminée // enlevé
+  rename <id> <nouveau>      Renomme une tâche // enlevé
   list                       Affiche toutes les tâches
-  clear                      Supprime toutes les tâches terminées
+  clear                      Supprime toutes les tâches terminées // enlevé
   help                       Affiche cette aide
   quit                       Quitte le programme
         """.strip()

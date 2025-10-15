@@ -26,19 +26,19 @@ class TaskController:
                 return True
         return False
 
-    def toggle(self, task_id: int) -> bool:
-        task = self.get_by_id(task_id)
-        if task:
-            task.toggle()
-            return True
-        return False
+    # def toggle(self, task_id: int) -> bool:
+    #     task = self.get_by_id(task_id)
+    #     if task:
+    #         task.toggle()
+    #         return True
+    #     return False
 
-    def rename(self, task_id: int, new_title: str) -> bool:
-        task = self.get_by_id(task_id)
-        if task:
-            task.rename(new_title)
-            return True
-        return False
+    # def rename(self, task_id: int, new_title: str) -> bool:
+    #     task = self.get_by_id(task_id)
+    #     if task:
+    #         task.rename(new_title)
+    #         return True
+    #     return False
 
     # Lecture
     def all(self) -> List[Task]:
@@ -50,7 +50,7 @@ class TaskController:
                 return t
         return None
 
-    def clear_completed(self) -> int:
-        before = len(self._tasks)
-        self._tasks = [t for t in self._tasks if not t.completed]
-        return before - len(self._tasks)
+    # def clear_completed(self) -> int:
+    #     before = len(self._tasks)
+    #     self._tasks = [t for t in self._tasks if not t.completed]
+    #     return before - len(self._tasks)
