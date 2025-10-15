@@ -9,7 +9,7 @@ Petit projet en ligne de commande pour gérer une liste de tâches.
 
 ## Prérequis & installation
 - Python 3.10+
-- Pas de dépendances externes (`requirements.txt` est vide).
+- pip install -r requirements.txt
 
 ```bash
 python --version
