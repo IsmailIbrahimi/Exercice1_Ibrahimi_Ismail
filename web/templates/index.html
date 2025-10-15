@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>ToDoList – Flask</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: system-ui, Arial, sans-serif;
+            max-width: 720px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+        }
+
+        form {
+            display: flex;
+            gap: .5rem;
+            margin: 1rem 0;
+        }
+
+        input[type=text] {
+            flex: 1;
+            padding: .6rem;
+        }
+
+        button {
+            padding: .6rem .9rem;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .done {
+            text-decoration: line-through;
+            opacity: .7;
+        }
+
+        .row {
+            display: flex;
+            gap: .5rem;
+        }
+
+        .id {
+            color: #777;
+            font-size: .9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>ToDoList – Flask</h1>
+        <div class="row">
+            <button id="btn-clear">Supprimer terminées</button>
+            <button id="btn-refresh">Rafraîchir</button>
+        </div>
+    </header>
+
+    <form id="form-add">
+        <input id="title" type="text" placeholder="Nouvelle tâche…" required>
+        <button type="submit">Ajouter</button>
+    </form>
+
+    <ul id="list"></ul>
+
+    <template id="tpl-item">
+        <li>
+            <input type="checkbox" class="chk">
+            <span class="txt"></span>
+            <span class="id"></span>
+            <button class="rename">Renommer</button>
+            <button class="del">Supprimer</button>
+        </li>
+    </template>
+
+    <script>
+        const $list = document.getElementById('list');
+        const $tpl = document.getElementById('tpl-item');
+        const API = {
+            list: () => fetch('/tasks').then(r => r.json()),
+            add: (title) => fetch('/tasks', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ title }) }).then(r => r.json()),
+            toggle: (id) => fetch(`/tasks/${id}/toggle`, { method: 'PATCH' }).then(r => r.json()),
+            rename: (id, title) => fetch(`/tasks/${id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ title }) }).then(r => r.json()),
+            del: (id) => fetch(`/tasks/${id}`, { method: 'DELETE' })
+        };
+
+        async function load() {
+            const items = await API.list();
+            $list.innerHTML = '';
+            for (const t of items) {
+                const li = $tpl.content.firstElementChild.cloneNode(true);
+                const chk = li.querySelector('.chk');
+                const txt = li.querySelector('.txt');
+                li.querySelector('.id').textContent = `#${t.id}`;
+                txt.textContent = t.title;
+                txt.classList.toggle('done', t.completed);
+                chk.checked = t.completed;
+
+                chk.addEventListener('change', async () => {
+                    const updated = await API.toggle(t.id);
+                    txt.classList.toggle('done', updated.completed);
+                });
+
+                li.querySelector('.rename').addEventListener('click', async () => {
+                    const nv = prompt('Nouveau titre :', t.title);
+                    if (!nv) return;
+                    const updated = await API.rename(t.id, nv);
+                    txt.textContent = updated.title;
+                });
+
+                li.querySelector('.del').addEventListener('click', async () => {
+                    await API.del(t.id);
+                    li.remove();
+                });
+
+                $list.appendChild(li);
+            }
+        }
+
+        document.getElementById('form-add').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const input = document.getElementById('title');
+            const title = input.value.trim();
+            if (!title) return;
+            await API.add(title);
+            input.value = '';
+            load();
+        });
+
+        document.getElementById('btn-refresh').addEventListener('click', load);
+        document.getElementById('btn-clear').addEventListener('click', async () => {
+            await fetch('/tasks/completed', { method: 'DELETE' });
+            load();
+        });
+
+        load();
+    </script>
+</body>
+
+</html>
