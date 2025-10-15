@@ -34,10 +34,7 @@ pip install -r requirements.txt
 ## Commandes disponibles
 - `add <titre>` : ajoute une tâche
 - `del <id>` : supprime la tâche d'identifiant `<id>`
-- `toggle <id>` : termine / ré-ouvre la tâche (commande enlevée)
-- `rename <id> <nouveau titre>` : renomme la tâche (commande enlevée)
 - `list` : affiche toutes les tâches
-- `clear` : supprime les tâches terminées (commande enlevée)
 - `help` : affiche l'aide
 - `quit` : quitte
 
@@ -55,3 +52,4 @@ web/
   app.py
 
 main.py           # point d'entrée (boucle d'interaction)
+
