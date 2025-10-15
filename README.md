@@ -1,4 +1,4 @@
-# ToDoList CLI (Python, MVC, POO – ultra débutant)
+# ToDoList CLI (Python, MVC, POO)
 
 Petit projet en ligne de commande pour gérer une liste de tâches.
 
