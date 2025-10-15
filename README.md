@@ -18,8 +18,14 @@ python main.py
 ## Création d'un venv et installation des dépendances
 ```bash
 python -m venv venv
+```
+```bash
 cd venv
+```
+```bash
 source Scripts/activate
+```
+```bash
 pip install -r requirements.txt
 ```
 
@@ -47,4 +53,5 @@ web/
   templates/
     index.html
   app.py
+
 main.py           # point d'entrée (boucle d'interaction)
